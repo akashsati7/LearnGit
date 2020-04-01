@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d40f1b80-8b86-42dd-bbc6-70561b2f4359" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1VQl27MeCl8Af6MdT9YAC8ZZrkK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Practices" />
+      <recent name="AlgoExpert" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LoginViaCode">
+    <configuration name="IntegerBreak" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Practices.IntegerBreak" />
+      <module name="Practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Practices.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginViaCode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Practices.LoginViaCode" />
+      <module name="Practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Practices.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaxPointOnALine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Practices.MaxPointOnALine" />
+      <module name="Practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Practices.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaximalSquare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Practices.MaximalSquare" />
+      <module name="Practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Practices.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WordBreak" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Practices.WordBreak" />
+      <module name="Practice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Practices.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LoginViaCode" />
+        <item itemvalue="Application.MaxPointOnALine" />
+        <item itemvalue="Application.IntegerBreak" />
+        <item itemvalue="Application.WordBreak" />
+        <item itemvalue="Application.MaximalSquare" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d40f1b80-8b86-42dd-bbc6-70561b2f4359" name="Default Changelist" comment="" />
+      <created>1577192990188</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1577192990188</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="327" y="173" key="#Specifications" timestamp="1585632651508">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="327" y="173" key="#Specifications/0.23.1440.820@0.23.1440.820" timestamp="1585632651508" />
+    <state x="408" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582428176653">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="408" y="168" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1440.820@0.23.1440.820" timestamp="1582428176653" />
+    <state width="1398" height="249" key="GridCell.Tab.0.bottom" timestamp="1585635962007">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="249" key="GridCell.Tab.0.bottom/0.23.1440.820@0.23.1440.820" timestamp="1585635962007" />
+    <state width="1398" height="249" key="GridCell.Tab.0.center" timestamp="1585635962007">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="249" key="GridCell.Tab.0.center/0.23.1440.820@0.23.1440.820" timestamp="1585635962007" />
+    <state width="1398" height="249" key="GridCell.Tab.0.left" timestamp="1585635962006">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="249" key="GridCell.Tab.0.left/0.23.1440.820@0.23.1440.820" timestamp="1585635962006" />
+    <state width="1398" height="249" key="GridCell.Tab.0.right" timestamp="1585635962007">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="249" key="GridCell.Tab.0.right/0.23.1440.820@0.23.1440.820" timestamp="1585635962007" />
+    <state width="1398" height="262" key="GridCell.Tab.1.bottom" timestamp="1584934635696">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="262" key="GridCell.Tab.1.bottom/0.23.1440.820@0.23.1440.820" timestamp="1584934635696" />
+    <state width="1398" height="262" key="GridCell.Tab.1.center" timestamp="1584934635695">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="262" key="GridCell.Tab.1.center/0.23.1440.820@0.23.1440.820" timestamp="1584934635695" />
+    <state width="1398" height="262" key="GridCell.Tab.1.left" timestamp="1584934635694">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="262" key="GridCell.Tab.1.left/0.23.1440.820@0.23.1440.820" timestamp="1584934635694" />
+    <state width="1398" height="262" key="GridCell.Tab.1.right" timestamp="1584934635696">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state width="1398" height="262" key="GridCell.Tab.1.right/0.23.1440.820@0.23.1440.820" timestamp="1584934635696" />
+    <state x="208" y="23" key="SettingsEditor" timestamp="1585630246908">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="208" y="23" key="SettingsEditor/0.23.1440.820@0.23.1440.820" timestamp="1585630246908" />
+    <state x="385" y="167" width="670" height="676" key="search.everywhere.popup" timestamp="1585450088853">
+      <screen x="0" y="23" width="1440" height="820" />
+    </state>
+    <state x="385" y="167" width="670" height="676" key="search.everywhere.popup/0.23.1440.820@0.23.1440.820" timestamp="1585450088853" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Practice$Program.ic" NAME="Program Coverage Results" MODIFIED="1577263565532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>AlgoExpert.*</FILTER>
+    </SUITE>
+  </component>
+</project>
