@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome import options
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
@@ -26,8 +27,9 @@ class ZerodhaSelenium(object):
         self.options.add_argument("--disable-dev-shm-usage")
         self.timeout = 5
         self.loadCredentials()
-        # self.driver = webdriver.Chrome(options=self.options)
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=self.options)
+        self.driver.implicitly_wait(30)
+        # self.driver = webdriver.Chrome()
 
     def getCssElement(self, cssSelector):
         '''
@@ -35,6 +37,13 @@ class ZerodhaSelenium(object):
         '''
         return WebDriverWait(self.driver, self.timeout).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, cssSelector)))
+
+    def getByXPath(self, cssSelector):
+        '''
+        To make sure we wait till the element appears
+        '''
+        return WebDriverWait(self.driver, self.timeout).until(
+            EC.presence_of_element_located((By.XPATH, cssSelector)))
 
     def loadCredentials(self):
         # with open("credentials.json") as credsFile:
@@ -50,33 +59,32 @@ class ZerodhaSelenium(object):
 
         # Only need to do this once per session
 
-        passwordField = self.getCssElement("input[placeholder=Password]")
-        passwordField.send_keys(self.password)
-        userNameField = self.getCssElement("input[placeholder='User ID']")
-        userNameField.send_keys(self.username)
-        loginButton = self.getCssElement("button[type=submit]")
-        loginButton.click()
-
-        time.sleep(1);
+        # passwordField = self.getCssElement("input[placeholder=Password]")
+        pwd = self.getByXPath("//*[(@placeholder='Password')]")
+        pwd.send_keys(self.password)
+        self.getByXPath("//*[(@placeholder='User ID' and @type='text')]").send_keys(self.username)
+        self.getByXPath("//button[(@type='submit')]").click()
 
         # 2FA
-        pin = self.getCssElement("input[type='password']") or self.getCssElement("input[placeholder=PIN]")
-        pin.send_keys(self.security)
+        pin = self.getByXPath("//*[(@animate='true') and (@label='PIN')]").send_keys(self.security)
         print("Pin "+(str)(pin));
 
-        buttonSubmit = self.getCssElement("button[type=submit]")
-        buttonSubmit.click()
+        self.getByXPath("//button[(@type='submit')]").click()
 
-        searchBar = self.getCssElement("input[id=search-input]")
+        searchBar = self.getByXPath("//input[(@id='search-input')]")
         print("searchBar "+(str)(searchBar))
         searchBar.send_keys("ACC");
+
         firstItem = self.getCssElement("li.search-result-item.selected");
         firstItem.click();
 
+        buyButton = self.getByXPath("//button[(@class='button-blue')]")
+        self.driver.execute_script("arguments[0].click();", buyButton)
 
-        self.getCssElement("button[class=button-blue]").click()
-        self.getCssElement("a.advanced-options-open").click()
-        quantity = self.getCssElement("input[type=number]")
+        advancedButton = self.getByXPath("//*[(@class='advanced-options-open')]")
+        self.driver.execute_script("arguments[0].click();", advancedButton)
+
+        quantity = self.getByXPath("//input[(@type='number')]")
         quantity.click();
         quantity.clear();
         quantity.send_keys(1);
@@ -88,17 +96,18 @@ class ZerodhaSelenium(object):
         limitOrder = self.driver.find_element_by_xpath("//input[(@type='radio') and (@title='Limit')]")
         self.driver.execute_script("arguments[0].click();", limitOrder)
 
-        price = self.driver.find_element_by_xpath("//input[(@type='number') and (@label='Price')]")
+        price = self.getByXPath("//input[(@type='number') and (@label='Price')]")
         price.send_keys(10)
 
 
-        self.getCssElement("button[type=submit]").click()
+        self.getByXPath("//button[(@type='submit')]").click()
+
+        print("RUnning")
 
         pdb.set_trace()
         # close chrome
         self.driver.quit()
 
-        print("RUnning")
 
 
     def do_something(self):
