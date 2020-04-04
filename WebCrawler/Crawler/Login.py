@@ -17,18 +17,22 @@ class ZerodhaSelenium(object):
 
     def __init__(self):
         self.options = Options()
-        self.options.add_argument("--headless")
-        self.options.add_argument("window-size=1400,1500")
-        self.options.add_argument("--disable-gpu")
         self.options.add_argument("--no-sandbox")
-        self.options.add_argument("start-maximized")
-        self.options.add_argument("enable-automation")
+        self.options.add_argument("--headless")
+        self.options.add_argument("--disable-extensions")
+        self.options.add_argument("--disable-notifications")
+        self.options.add_argument("--window-size=1920,1080");
+        self.options.add_argument("--start-maximized");
+        self.options.add_argument("--disable-gpu");
+        self.options.add_argument("--proxy-server='direct://'");
+        self.options.add_argument("--proxy-bypass-list=*");
+        self.options.add_argument("--disable-gpu")
+        self.options.add_argument("--enable-automation")
         self.options.add_argument("--disable-infobars")
         self.options.add_argument("--disable-dev-shm-usage")
         self.timeout = 5
         self.loadCredentials()
         self.driver = webdriver.Chrome(options=self.options)
-        self.driver.implicitly_wait(30)
         # self.driver = webdriver.Chrome()
 
     def getCssElement(self, cssSelector):
@@ -42,6 +46,7 @@ class ZerodhaSelenium(object):
         '''
         To make sure we wait till the element appears
         '''
+        # time.sleep(.5);
         return WebDriverWait(self.driver, self.timeout).until(
             EC.presence_of_element_located((By.XPATH, cssSelector)))
 
@@ -75,7 +80,7 @@ class ZerodhaSelenium(object):
         print("searchBar "+(str)(searchBar))
         searchBar.send_keys("ACC");
 
-        firstItem = self.getCssElement("li.search-result-item.selected");
+        firstItem = self.getByXPath("//li[(@class='search-result-item selected')]");
         firstItem.click();
 
         buyButton = self.getByXPath("//button[(@class='button-blue')]")
@@ -98,6 +103,7 @@ class ZerodhaSelenium(object):
 
         price = self.getByXPath("//input[(@type='number') and (@label='Price')]")
         price.send_keys(10)
+
 
 
         self.getByXPath("//button[(@type='submit')]").click()
