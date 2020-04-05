@@ -8,46 +8,55 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import json
+import traceback
+
 import pdb
 import time
 # import schedule
+
+from xvfbwrapper import Xvfb
 
 
 class ZerodhaSelenium(object):
 
     def __init__(self):
+        self.vdisplay = Xvfb()
+        self.vdisplay.start()
+        print("Started")
         self.options = Options()
-        self.options.add_argument("--no-sandbox")
-        self.options.add_argument("--headless")
-        self.options.add_argument("--disable-extensions")
-        self.options.add_argument("--disable-notifications")
-        self.options.add_argument("--window-size=1920,1080");
-        self.options.add_argument("--start-maximized");
-        self.options.add_argument("--disable-gpu");
-        self.options.add_argument("--proxy-server='direct://'");
-        self.options.add_argument("--proxy-bypass-list=*");
-        self.options.add_argument("--disable-gpu")
-        self.options.add_argument("--enable-automation")
-        self.options.add_argument("--disable-infobars")
-        self.options.add_argument("--disable-dev-shm-usage")
         self.timeout = 5
         self.loadCredentials()
+        self.options.add_argument("--window-size=1920,1080");
         self.driver = webdriver.Chrome(options=self.options)
         # self.driver = webdriver.Chrome()
+        self.advancedSelectedOnce = False
 
-    def getCssElement(self, cssSelector):
+    def getCssElement(self, cssSelector,wait=-1):
         '''
         To make sure we wait till the element appears
         '''
-        return WebDriverWait(self.driver, self.timeout).until(
+        if wait is -1:
+            waitTime = self.timeout
+        else:
+            waitTime = wait
+        return WebDriverWait(self.driver, waitTime).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, cssSelector)))
 
-    def getByXPath(self, cssSelector):
+
+    def getByXPath(self, cssSelector,advanceButton = False,wait=-1):
         '''
         To make sure we wait till the element appears
         '''
         # time.sleep(.5);
-        return WebDriverWait(self.driver, self.timeout).until(
+        if wait is -1:
+            waitTime = self.timeout
+            if advanceButton and self.advancedSelectedOnce:
+                waitTime = 0;
+                print(waitTime)
+        else:
+            waitTime = wait
+
+        return WebDriverWait(self.driver, waitTime).until(
             EC.presence_of_element_located((By.XPATH, cssSelector)))
 
     def loadCredentials(self):
@@ -75,50 +84,79 @@ class ZerodhaSelenium(object):
         print("Pin "+(str)(pin));
 
         self.getByXPath("//button[(@type='submit')]").click()
+        print("Pin Submitted")
 
-        searchBar = self.getByXPath("//input[(@id='search-input')]")
-        print("searchBar "+(str)(searchBar))
-        searchBar.send_keys("ACC");
-
-        firstItem = self.getByXPath("//li[(@class='search-result-item selected')]");
-        firstItem.click();
-
-        buyButton = self.getByXPath("//button[(@class='button-blue')]")
-        self.driver.execute_script("arguments[0].click();", buyButton)
-
-        advancedButton = self.getByXPath("//*[(@class='advanced-options-open')]")
-        self.driver.execute_script("arguments[0].click();", advancedButton)
-
-        quantity = self.getByXPath("//input[(@type='number')]")
-        quantity.click();
-        quantity.clear();
-        quantity.send_keys(1);
-
-        coButton = self.driver.find_element_by_xpath("//input[(@type='radio') and (@title='After market order')]")
-
-        self.driver.execute_script("arguments[0].click();", coButton)
-
-        limitOrder = self.driver.find_element_by_xpath("//input[(@type='radio') and (@title='Limit')]")
-        self.driver.execute_script("arguments[0].click();", limitOrder)
-
-        price = self.getByXPath("//input[(@type='number') and (@label='Price')]")
-        price.send_keys(10)
-
-
-
-        self.getByXPath("//button[(@type='submit')]").click()
-
-        print("RUnning")
+        while True:
+            self.placeOrder();
+            time.sleep(10);
 
         pdb.set_trace()
         # close chrome
         self.driver.quit()
 
+    def placeOrder(self):
+        try:
+            self.getByXPath("//input[(@id='search-input')]").send_keys("ACC");
+            print("Typed ACC")
+
+            firstItem = self.getCssElement("li.search-result-item.selected");
+            hov = ActionChains(self.driver).move_to_element(firstItem)
+            hov.perform()
+
+            buyButton = self.getCssElement("button[class=button-blue]")
+            self.driver.execute_script("arguments[0].click();", buyButton)
+
+            try:
+                if not self.advancedSelectedOnce:
+                    self.advancedSelectedOnce = True
+                advancedButton = self.getByXPath("//*[(@class='advanced-options-open')]",True)
+                if advancedButton is not None:
+                    self.driver.execute_script("arguments[0].click();", advancedButton)
+            except:
+                print("advanced-options not found")
+
+            quantity = self.getByXPath("//input[(@type='number')]")
+            quantity.click();
+            quantity.clear();
+            quantity.send_keys(1);
+
+            coButton = self.driver.find_element_by_xpath("//input[(@type='radio') and (@title='After market order')]")
+
+            self.driver.execute_script("arguments[0].click();", coButton)
+
+            limitOrder = self.driver.find_element_by_xpath("//input[(@type='radio') and (@title='Limit')]")
+            self.driver.execute_script("arguments[0].click();", limitOrder)
+
+            price = self.getByXPath("//input[(@type='number') and (@label='Price')]")
+            price.send_keys(10)
+
+            self.getByXPath("//button[(@type='submit')]").click()
+
+            print("RUnning")
+            self.goToOrdersPage()
+            # self.sortAccordingToTime();
+        except Exception:
+            traceback.print_exc()
 
 
-    def do_something(self):
-        print("Doing stuff...")
+    def goToOrdersPage(self):
+        self.getByXPath("//*[(@href='/orders')]").click();
 
+    def sortAccordingToTime(self):
+        # desc = self.getByXPath("//*[(@class='order-timestamp.sortable.sorted.desc)",wait=1)
+        completedOrders = self.getCssElement("th.order-timestamp.sortable.sorted.desc")
+        print(completedOrders)
+        desc = completedOrders.find_elements(By.TAG_NAME, "thead")
+        if not desc is None:
+            print("Found desc "+str(desc))
+        else:
+            print("Not Found desc...")
+
+        asc = self.getByXPath("order-timestamp sortable sorted asc sortable",wait=1)
+        if not asc is None:
+            print("Found asc "+str(asc))
+        else:
+            print("Not Found asc...")
 
 if __name__ == "__main__":
     obj = ZerodhaSelenium()
